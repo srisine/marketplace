@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>S.Sin's MarketPlace!</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <section id="form">
+    <div class="form-holder">
+      <h1>S.SIN's MARKETPLACE!</h1> <br>
+      <p>After Conforming your order please 
+        play the sum of ₹10/- to Shaurya of class 9a by 
+        the very next school day!</p> <br>
+      <form class="service">
+        <label for="name">NAME: </label> 
+        <input type="text" id="name" name="name" placeholder="ENTER HERE"> <br>
+        <label for="class">CLASS: </label>
+        <input type="text" id="class" name="class" placeholder="ENTER HERE"> <br>
+        <label for="serviceType">What service do you want (Logo, website, python program) :</label> 
+        <input type="text" id="serviceType" name="serviceType"placeholder="ENTER HERE"> <br>
+        <label for="service">DESCRIBE WHAT YOU WANT: </label>
+        <input type="text" id="serviceDesc" name="service" placeholder="ENTER HERE"> <br>
+        <input type="submit" id="submit">
+      </form>
+    </div>
+  </section>
+
+  <script type="module">
+    
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+    import { getDatabase, ref, set, get, child } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-database.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyCOOw7_p9gh5o9UB2t2MW1Qofc_VwnBGdY",
+        authDomain: "damessage-31a3e.firebaseapp.com",
+        databaseURL: "https://damessage-31a3e-default-rtdb.firebaseio.com",
+        projectId: "damessage-31a3e",
+        storageBucket: "damessage-31a3e.appspot.com",
+        messagingSenderId: "600342179",
+        appId: "1:600342179:web:a5af33d4f1493a20790916"
+    };
+
+        // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+
+    const db = getDatabase(app);
+
+    
+    document.getElementById("submit").addEventListener("click", function(e){
+        e.preventDefault();
+
+        set(ref(db, 'user/' + document.getElementById("name").value), {
+
+            username: document.getElementById("name").value,
+            class: document.getElementById("class").value,
+            serviceType: document.getElementById("serviceType").value,
+            service: document.getElementById("serviceDesc").value
+        });
+        alert("Order Sent!");
+    })
+
+  </script>
+</body>
+</html>
